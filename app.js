@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
-var Login = require("./models/login");
+
 
 //passport config:
 require('./config/passport')(passport)
@@ -15,7 +15,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 //Set up mongoose connection
-let connectionStr = 'mongodb+srv://' + Login.User + ':' + Login.Password + '@cluster0.9xazx.mongodb.net/ghibli?retryWrites=true&w=majority';
+let connectionStr = 'mongodb+srv://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASSWORD + '@cluster0.9xazx.mongodb.net/ghibli?retryWrites=true&w=majority';
 mongoose.connect(connectionStr, {
   useNewUrlParser: true
 })
