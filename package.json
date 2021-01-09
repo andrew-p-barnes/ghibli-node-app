@@ -5,6 +5,10 @@
   "engines": {
     "node": "12.x"
   },
+  "scripts": {
+    "start": "node app.js"
+  },
+  
   "dependencies": {
     "async": "^3.2.0",
     "bcrypt": "^5.0.0",
