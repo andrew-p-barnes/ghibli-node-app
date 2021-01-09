@@ -22,7 +22,6 @@ mongoose.connect(connectionStr, {
 .then(() => console.log('connected to db'))
 .catch((err)=> console.log(err));
 
-
 const app = express();
 
 app.listen(process.env.PORT || 3000, function(){

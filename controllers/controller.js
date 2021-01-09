@@ -132,59 +132,61 @@ exports.renderIndex = function(req, res) {
 
     if (filmManager.films.length == 0) {
 
-        let statusMap = new Map();
+        // var used for Map objects as function scope required because createFilms inner function refers to these variables
+        var statusMap = new Map();
+        var userReviewMap = new Map();
+        var avgUserReviewMap = new Map();
 
         const findUserPromise = new Promise(function(resolve, reject) {
             resolve(User.findByEmail(req.user.email));
         });
-        findUserPromise
-            .then(function(userDoc) {
-                if (userDoc.filmStatus) {
-                    let statusJSONStr = userDoc.filmStatus;
-                    console.log(statusJSONStr);
-                    let statusArray = JSON.parse(statusJSONStr);
-                    statusArray.forEach(film => {
-                        statusMap.set(film[0], film[1]); // set the film title as the key, and film status as the value
-                    })
-                }
-            })
-            .catch(function(err) {
-                console.log(err);
-            });
-
-        let userReviewMap = new Map();
 
         // find any reviews created by the user
         const findUserReviewsPromise = new Promise(function(resolve, reject) {
             resolve(Review.findReviewsByName(req.user.name));
         });
-        findUserReviewsPromise
-            .then(function(reviews) {
-                console.log(reviews);
-                reviews.forEach(film => {
-                    userReviewMap.set(film.filmTitle, film.filmRating); // set the film title as the key, and film user rating as the value
-                })
-            })
-            .catch(function(err) {
-                console.log(err);
-            });
-
-        let avgUserReviewMap = new Map();
 
         const findAvgReviewsPromise = new Promise(function(resolve, reject) {
             resolve(Review.findAvgUserRating());
         });
-        findAvgReviewsPromise
-            .then(function(reviews) {
-                console.log(reviews);
-                reviews.forEach(film => {
-                    avgUserReviewMap.set(film.filmTitle, Math.round(film.avgRating)); // set the film title as the key, and film avg user rating as the value
-                })
-            })
-            .catch(function(err) {
-                console.log(err);
-            });
 
+        findUserPromise
+        .then(function(userDoc) {
+            if (userDoc.filmStatus) {
+                let statusJSONStr = userDoc.filmStatus;
+                console.log(statusJSONStr);
+                let statusArray = JSON.parse(statusJSONStr);
+                statusArray.forEach(film => {
+                    statusMap.set(film[0], film[1]); // set the film title as the key, and film status as the value
+                })
+            }
+            return findUserReviewsPromise;
+        })
+        .then(function(reviews) {
+            console.log(reviews);
+            reviews.forEach(film => {
+                userReviewMap.set(film.filmTitle, film.filmRating); // set the film title as the key, and film user rating as the value
+            })
+            return findAvgReviewsPromise;
+        })
+        .then(function(reviews) {
+            console.log(reviews);
+            reviews.forEach(film => {
+                avgUserReviewMap.set(film.filmTitle, Math.round(film.avgRating)); // set the film title as the key, and film avg user rating as the value
+            })
+            createFilms();
+        })
+        .catch(function(error) {
+            console.log(error);
+            res.status(500).send({error: error})
+        });
+    }
+    else {
+        let filmsList = filmManager.getFilms();
+            res.render('index', {filmsList: filmsList, user: req.user});
+    }
+
+    function createFilms() {
         fetch('https://ghibliapi.herokuapp.com/films')
         .then(response => {
             if (!response.ok) {
@@ -227,10 +229,6 @@ exports.renderIndex = function(req, res) {
         .catch(error => {
             res.status(500).send({error: error})
         });
-    } 
-    else {
-        let filmsList = filmManager.getFilms();
-            res.render('index', {filmsList: filmsList, user: req.user});
     }
 };
 
