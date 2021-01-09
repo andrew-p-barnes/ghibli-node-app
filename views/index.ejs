@@ -1,0 +1,29 @@
+<% extend('layout') %>
+
+      <p> Welcome <%= user.name %></p>
+      <div class="container">
+        <% for(var i=0; i < filmsList.length; i++) { %>
+          <div class="card" data-id= <%= filmsList[i].id %>> 
+            <div class="card-body">
+              <img src= <%= filmsList[i].imgSrc %> class="film-img" width="290" height="450">
+              <p>Release date: <%= filmsList[i].releaseDate %></p>
+              <div class="scores">
+                <p>RT score: <%=filmsList[i].rtScore %>  <img src= <%= filmsList[i].rtImgSrc %> width='20'></p>
+                <% if (filmsList[i].avgUserScore != null) { %>
+                <p>Avg user score: <%= filmsList[i].avgUserScore %></p>
+                <% } %>
+              </div>
+              <div class="footer">
+                <button type="button" class="btn btn-secondary more-info-btn" data-toggle="modal" data-target="#moreInfoModal">More...</button>  
+                <% if (filmsList[i].status == "avail") { %>
+                <button type="button" class="add-btn btn btn-outline-primary">Watchlist</button>
+                <% } else if (filmsList[i].status == "watchlist") { %>
+                <button type="button" class="btn btn-primary" disabled>Added</button>
+                <% } else if (filmsList[i].status == "watched") { %>
+                <button type="button" class="btn btn-success" disabled>Watched</button>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        <% } %>
+      </div>

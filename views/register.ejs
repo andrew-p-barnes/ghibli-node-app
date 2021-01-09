@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Ghibli Film Tracker</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:400,700" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
+
+  <body>
+    <img src="/images/logo.png" id="logo">
+    <h1>Ghibli Film Tracker</h1>
+    <h4>Register</h4>
+    <div class="text-center">
+      <%- include partials/messages %>
+    </div>
+
+    <!-- <form action="/users/register" method="POST">
+      <div>
+        <label for="name">Name</label>
+        <input
+          type="name"
+          name="name"
+          placeholder="Enter Name"
+          value="<%= typeof name != 'undefined' ? name : '' %>"
+        />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter Email"
+          value="<%= typeof email != 'undefined' ? email : '' %>"
+        />
+      </div>
+      <div >
+        <label for="password">Password</label>
+        <input
+          type="password"
+          name="password"
+          placeholder="Create Password"
+          value="<%= typeof password != 'undefined' ? password : '' %>"
+        />
+      </div>
+      <div >
+        <label for="password2">Confirm Password</label>
+        <input
+          type="password"
+          name="password2"
+          placeholder="Confirm Password"
+          value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">
+        Register
+      </button>
+    </form>
+    <p>Have An Account? <a href="/users/login">Login</a></p>
+   -->
+
+
+    <form action="/users/register" method="POST">
+      <div>
+        <div class="row">
+          <div class="mb-3 col-2 offset-5">
+            <label for="inputName1" class="form-label">Name</label>
+            <input type="text" name="name" placeholder="Enter Name" value="<%= typeof name != 'undefined' ? name : '' %>" class="form-control" id="inputName1" aria-describedby="emailHelp">
+          </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-2 offset-5">
+              <label for="inputEmail1" class="form-label">Email address</label>
+              <input type="email" name="email" placeholder="Enter Email" value="<%= typeof email != 'undefined' ? email : '' %>" class="form-control" id="inputEmail1" aria-describedby="emailHelp">
+            </div>
+          </div>
+        <div class="row">
+          <div class="mb-3 col-2 offset-5">
+            <label for="inputPassword1" class="form-label">Password</label>
+            <input type="password" name="password" placeholder="Create Password (at least 6 characters)" value="<%= typeof password != 'undefined' ? password : '' %>" class="form-control" id="inputPassword1" aria-describedby="passwordHelpBlock">
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-3 col-2 offset-5">
+            <label for="inputPassword2" class="form-label">Confirm Password</label>
+            <input type="password" name="password2" placeholder="Confirm Password" value="<%= typeof password2 != 'undefined' ? password2 : '' %>" class="form-control" id="inputPassword2">
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-3 col-2 offset-5">
+            <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
+            <p>Have An Account? <a href="/users/login">Login</a></p>
+          </div>
+        </div>
+      </div>
+    </form>
+
+  </body>
+</html>
