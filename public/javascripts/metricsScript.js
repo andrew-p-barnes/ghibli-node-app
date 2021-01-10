@@ -6,9 +6,13 @@ function drawWatchedChart(numFilmsWatched, numTotalFilms) {
       ['Still to watch', numRemaining],
     ]);
 
+    var options = {
+        chartArea:{left:0}
+      };
+
     var chart = new google.visualization.PieChart(document.getElementById('watchedPiechart'));
 
-    chart.draw(data);
+    chart.draw(data, options);
 }
 
 function drawMostWatchedTable(mostWatched) {

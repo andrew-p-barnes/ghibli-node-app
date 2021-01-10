@@ -5,7 +5,7 @@
           <% for(var i=0; i < watchlist.length; i++) { %>
             <div class="card" data-id= <%= watchlist[i].id %>> 
               <div class="card-body">
-                <img src= <%= watchlist[i].imgSrc %> class="film-img" width="290" height="450">
+                <img src= <%= watchlist[i].imgSrc %> class="film-img">
                 <p>Release date: <%= watchlist[i].releaseDate %></p>
                 <div class="scores">
                   <p>RT score: <%=watchlist[i].rtScore %>  <img src= <%= watchlist[i].rtImgSrc %> width='30'></p>

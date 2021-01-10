@@ -5,7 +5,7 @@
           <% for(var i=0; i < watched.length; i++) { %>
             <div class="card" data-id= <%= watched[i].id %>> 
               <div class="card-body">
-                <img src= <%= watched[i].imgSrc %> class="film-img" width="290" height="450">
+                <img src= <%= watched[i].imgSrc %> class="film-img">
                 <p>Release date: <%= watched[i].releaseDate %></p>
                 <div class="scores">
                   <p>RT score: <%=watched[i].rtScore %>  <img src= <%= watched[i].rtImgSrc %> width='20'></p>

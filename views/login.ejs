@@ -17,45 +17,16 @@
     <div class="text-center">
       <%- include partials/messages %>
     </div>
-    <!-- <form action="/users/login" method="POST">
-      <div>
-        <label for="email">Email</label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter Email"
-      />
-      </div>
-      <div>
-        <label for="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter Password"
-          />
-      </div>
-      <button type="submit" class="btn btn-primary btn-block">Login</button>
-    </form> -->
 
     <form action="/users/login" method="POST">
-      <div>
-        <div class="row">
-          <div class="mb-3 col-2 offset-5">
-            <label for="inputEmail1" class="form-label">Email address</label>
-            <input type="email" name="email" placeholder="Enter Email" class="form-control" id="inputEmail1" aria-describedby="emailHelp">
-          </div>
-        </div>
-        <div class="row">
-          <div class="mb-3 col-2 offset-5">
-            <label for="inputPassword1" class="form-label">Password</label>
-            <input type="password" name="password" placeholder="Enter Password" class="form-control" id="inputPassword1">
-          </div>
-        </div>
-        <div class="row">
-          <div class="mb-3 col-2 offset-5">
-            <button type="submit" class="btn btn-primary btn-block mb-3">Login</button>
-            <p>Don't Have An Account? <a href="/users/register">Register</a></p>
-          </div>
+      <div class="container-center">
+        <div>
+          <label for="inputEmail1" class="form-label">Email address</label>
+          <input type="email" name="email" placeholder="Enter Email" class="form-control mb-3" id="inputEmail1" aria-describedby="emailHelp">
+          <label for="inputPassword1" class="form-label">Password</label>
+          <input type="password" name="password" placeholder="Enter Password" class="form-control mb-3" id="inputPassword1">
+          <button type="submit" class="btn btn-primary btn-block mb-3">Login</button>
+          <p>Don't Have An Account? <a href="/users/register">Register</a></p>
         </div>
       </div>
     </form>

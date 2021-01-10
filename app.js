@@ -14,19 +14,30 @@ require('./config/passport')(passport)
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+// //Set up mongoose connection
+// let connectionStr = 'mongodb+srv://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASSWORD + '@cluster0.9xazx.mongodb.net/ghibli?retryWrites=true&w=majority';
+// mongoose.connect(connectionStr, {
+//   useNewUrlParser: true
+// })
+// .then(() => console.log('connected to db'))
+// .catch((err)=> console.log(err));
+
 //Set up mongoose connection
-let connectionStr = 'mongodb+srv://' + process.env.MONGO_USER + ':' + process.env.MONGO_PASSWORD + '@cluster0.9xazx.mongodb.net/ghibli?retryWrites=true&w=majority';
-mongoose.connect(connectionStr, {
-  useNewUrlParser: true
-})
+mongoose.connect('mongodb://localhost/ghibli',{useNewUrlParser: true},{useUnifiedTopology: true})
 .then(() => console.log('connected to db'))
 .catch((err)=> console.log(err));
 
 const app = express();
 
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+// app.listen(process.env.PORT || 3000, function(){
+//   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+// });
+
+const port = 3000
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
 
 // view engine setup
 app.engine('ejs', require('express-ejs-extend'));
