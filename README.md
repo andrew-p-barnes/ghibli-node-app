@@ -3,6 +3,8 @@
 <p> This is an extension of my ghibli-app project using node.js (with express.js), MongoDB Atlas (cloud), Bootstrap, and Google Charts. Ghibli film 
 data is fetched from the public <a href="https://ghibliapi.herokuapp.com/">Studio Ghibli API</a></p>
 
+<p>This app is hosted on Heroku: <a href="https://ghibli-film-tracker.herokuapp.com/">Ghibli Film Tracker</a></p>
+
 <p>The following features have been implemented:</p>
 <ul>
   <li>user registration, log in and log out</li>
